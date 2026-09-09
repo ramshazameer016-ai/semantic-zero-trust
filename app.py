@@ -194,17 +194,37 @@ full_test_results = pd.DataFrame({
 })
 
 print("Full Test Set Predictions (First 10 rows):")
-display(full_test_results.head(10))
-print("\n--- Prediction Distribution ---")
-print(full_test_results['Predicted_Class'].value_counts().rename({0: 'Normal', 1: 'Threat'}))
+# ────────────────────────────────────────────────────────────────────────
+# %%  [9] - Full test set predictions and new data sample
+st.subheader("📊 Test Set Predictions")
+
+X_test_filtered = X_test[feature_cols]
+test_predictions = learner.model.predict(X_test_filtered)
+test_risk_scores = learner.model.predict_proba(X_test_filtered)[:, 1]
+
+full_test_results = pd.DataFrame({
+    'Actual_Class': y_test.values,
+    'Predicted_Class': test_predictions,
+    'Risk_Score': test_risk_scores
+})
+
+st.write("**First 10 Predictions:**")
+st.table(full_test_results.head(10))
+
+st.write("**Prediction Distribution:**")
+pred_counts = full_test_results['Predicted_Class'].value_counts().rename({0: 'Normal', 1: 'Threat'})
+st.table(pred_counts.to_frame())
 
 # New data sample prediction
-X_new       = X_test.head(5)[feature_cols]
+st.write("**Predictions for 5-row new data sample:**")
+X_new = X_test.head(5)[feature_cols]
 predictions = learner.model.predict(X_new)
 risk_scores = learner.model.predict_proba(X_new)[:, 1]
-results     = pd.DataFrame({'Predicted_Class': predictions, 'Risk_Score': risk_scores})
-print("\nPredictions for 5-row new data sample:")
-display(results)
+results = pd.DataFrame({
+    'Predicted_Class': predictions,
+    'Risk_Score': risk_scores
+})
+st.table(results)
 
 # %%
 # FIX: shap_values may be a list for binary XGBoost → extract class-1 array
