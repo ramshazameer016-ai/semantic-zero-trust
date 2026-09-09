@@ -1,0 +1,18 @@
+
+---
+
+### FILE 3: requirements.txt (Copy this content)
+
+```text
+pandas
+numpy
+scikit-learn
+xgboost
+imbalanced-learn
+shap
+rdflib
+networkx
+matplotlib
+seaborn
+optuna
+kagglehub
