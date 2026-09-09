@@ -26,5 +26,5 @@ Build an adaptive, explainable system that detects insider threats while providi
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/ramshazameer016-ai/SemanticZeroTrust-Experiment.git
-cd SemanticZeroTrust-Experiment
+git clone https://github.com/ramshazameer016-ai/semantic-zero-trust.git
+cd semantic-zero-trust
