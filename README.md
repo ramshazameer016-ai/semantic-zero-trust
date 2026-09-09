@@ -1,4 +1,6 @@
 # Insider Threat Detection with XGBoost & Semantic Reasoning
+## Live Demo of the app
+https://semantic-zero-trust-byt57yl9hhcxplncr2qtcg.streamlit.app/
 
 A hybrid approach combining **XGBoost** with **ontology-based reasoning** for explainable insider threat detection on the CERT 4.2 dataset.
 
