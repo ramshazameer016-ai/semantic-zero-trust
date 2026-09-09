@@ -306,6 +306,7 @@ with st.spinner("Training baseline models..."):
     mlp_pred = mlp_model.predict(X_test_e)
     mlp_prob = mlp_model.predict_proba(X_test_e)[:, 1]
 
+# Model Comparison
 rf_acc = accuracy_score(y_test_e, rf_pred)
 rf_f1 = f1_score(y_test_e, rf_pred)
 rf_auc = roc_auc_score(y_test_e, rf_prob)
@@ -321,12 +322,10 @@ comparison_data = {
     'AUC-ROC': [auc, rf_auc, mlp_auc]
 }
 df_metrics = pd.DataFrame(comparison_data).set_index('Model')
+print("--- Model Performance Comparison Table ---")
+st.dataframe(df_metrics)  # ← FIXED: display() replaced
 
-st.dataframe(df_metrics)
-
-# Plot comparison (EXACT SAME as original)
-fig, ax = plt.subplots(figsize=(12, 7))
-df_metrics.plot(kind='bar', ax=ax, rot=0, colormap='viridis')
+ax = df_metrics.plot(kind='bar', figsize=(12, 7), rot=0, colormap='viridis')
 plt.title('Comparative Performance Analysis: Insider Threat Detection Models', fontsize=16, pad=20)
 plt.ylabel('Score (0.0 - 1.0)', fontsize=12)
 plt.xlabel('Model Architecture', fontsize=12)
@@ -339,7 +338,7 @@ for p in ax.patches:
                 ha='center', va='center', xytext=(0, 9),
                 textcoords='offset points', fontsize=10, fontweight='bold')
 plt.tight_layout()
-st.pyplot(fig)
+st.pyplot(plt.gcf())  # ← FIXED: plt.show() replaced
 plt.close()
 
 st.markdown("---")
