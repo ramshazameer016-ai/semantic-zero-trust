@@ -4,6 +4,7 @@
 ### FILE 3: requirements.txt (Copy this content)
 
 ```text
+streamlit
 pandas
 numpy
 scikit-learn
