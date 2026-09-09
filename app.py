@@ -1,5 +1,17 @@
 # %%
+# %%
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
+# ─── MUST BE FIRST ───
+import streamlit as st
+
+# ─── Page Config (must be first Streamlit command) ───
+st.set_page_config(
+    page_title="Insider Threat Detection System",
+    page_icon="🛡️",
+    layout="wide"
+)
 
 # %%
 import kagglehub
